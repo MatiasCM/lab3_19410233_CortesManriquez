@@ -8,6 +8,29 @@ package lab3_19410233_CortesManriquez;
  *
  * @author matias
  */
-class Usuario {
+public class Usuario {
+    protected String userName;
+    protected String password;
     
+    //---Constructor---//
+    public Usuario(String userName, String password) {
+        this.userName = userName;
+        this.password = password;
+    }
+    
+    //---Selectores---//
+    public String getUserName() {
+        return userName;
+    }
+    public String getPassword() {
+        return password;
+    }
+    
+    //---Modificadores---//
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
+    public void setPassword(String password) {
+        this.password = password;
+    }
 }

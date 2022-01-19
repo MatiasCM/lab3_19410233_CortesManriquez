@@ -5,9 +5,11 @@
 package lab3_19410233_CortesManriquez;
 
 /**
- *
+ * Una clase para representar la plataforma de documentos
  * @author matias
  */
 public class Editor {
+    public String nombre;
+    protected Usuario usuarioLog;
     
 }
