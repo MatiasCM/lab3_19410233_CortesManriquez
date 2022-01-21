@@ -18,6 +18,11 @@ public class Usuario {
         this.password = password;
     }
     
+    public Usuario() {
+        this.userName = "";
+        this.password = "";
+    }
+    
     //---Selectores---//
     public String getUserName() {
         return userName;
@@ -33,4 +38,9 @@ public class Usuario {
     public void setPassword(String password) {
         this.password = password;
     }
+    
+    public void createUser(String nombre,String pass){
+      this.userName = nombre;
+      this.password = pass;
+  }
 }

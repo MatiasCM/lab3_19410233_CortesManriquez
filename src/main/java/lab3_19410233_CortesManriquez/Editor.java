@@ -12,53 +12,52 @@ import java.util.List;
  * @author matias
  */
 public class Editor {
-    public String nombre;
-    public LocalDate fechaCreacion;
     protected Usuario usuarioLog;
-    protected List<Usuario> listUsuarios;
+    protected ListUsuarios listUsuarios;
     protected ListDocumentos listaDocumentos;
     
     //---Constructor---//
-    public Editor(String nombre, LocalDate fechaCreacion, Usuario usuarioLog, List<Usuario> listUsuarios, ListDocumentos listaDocumentos) {
-        this.nombre = nombre;
-        this.fechaCreacion = fechaCreacion;
-        this.usuarioLog = usuarioLog;
-        this.listUsuarios = listUsuarios;
-        this.listaDocumentos = listaDocumentos;
+    public Editor() {
+        this.usuarioLog = new Usuario();
+        this.listUsuarios = new ListUsuarios();
+        this.listaDocumentos = new ListDocumentos();
     }
     
     //---Selectores---//
-    public String getNombre() {
-        return nombre;
-    }
-    public LocalDate getFechaCreacion() {
-        return fechaCreacion;
-    }
     public Usuario getUsuarioLog() {
         return usuarioLog;
     }
-    public List<Usuario> getListUsuarios() {
+    public ListUsuarios getListUsuarios() {
         return listUsuarios;
     }
     public ListDocumentos getListaDocumentos() {
         return listaDocumentos;
     }
-    
+       
     //---Modificadores---//
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
-    public void setFechaCreacion(LocalDate fechaCreacion) {
-        this.fechaCreacion = fechaCreacion;
-    }
     public void setUsuarioLog(Usuario usuarioLog) {
         this.usuarioLog = usuarioLog;
     }
-    public void setListUsuarios(List<Usuario> listUsuarios) {
+    public void setListUsuarios(ListUsuarios listUsuarios) {
         this.listUsuarios = listUsuarios;
     }
     public void setListaDocumentos(ListDocumentos listaDocumentos) {
         this.listaDocumentos = listaDocumentos;
     }
-      
+   
+    
+    public void register(String userName,String password){
+        if(listUsuarios.inUserList(userName)==0)
+        {
+            Usuario newUser = new Usuario();
+            newUser.createUser(userName,password);
+            listUsuarios.addUser(newUser);
+        }
+        else
+        {
+            System.out.println("-------------------------------------------------\n"
+                    +          "|Usuario ya registrado con ese nombre de usuario|\n"
+                    +          "-------------------------------------------------");
+        }
+    }
 }

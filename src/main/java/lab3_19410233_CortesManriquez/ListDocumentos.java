@@ -15,7 +15,7 @@ public class ListDocumentos {
     public int cantidadDocumentos;
     
     //---Constructor---//
-    public ListDocumentos(List<Documento> documentos, int cantidadDocumentos) {
+    public ListDocumentos() {
         this.documentos = documentos;
         this.cantidadDocumentos = cantidadDocumentos;
     }
