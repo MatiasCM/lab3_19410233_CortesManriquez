@@ -5,7 +5,6 @@
 package lab3_19410233_CortesManriquez;
 
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  *
@@ -19,6 +18,11 @@ public class ListUsuarios {
         ArrayList<Usuario> ul = new ArrayList<Usuario>();
         this.UL = ul;
     }
+
+    @Override
+    public String toString() {
+        return "ListUsuarios{" + "UL=" + UL + '}';
+    } 
     
     public int lenUL(){
         return this.UL.size();

@@ -33,5 +33,11 @@ public class Version {
     public void setIdVersion(int idVersion) {
         this.idVersion = idVersion;
     }
+
+    @Override
+    public String toString() {
+        return "Version{" + "contenidoVersion=" + contenidoVersion + ", idVersion=" + idVersion + '}';
+    }
+    
     
 }

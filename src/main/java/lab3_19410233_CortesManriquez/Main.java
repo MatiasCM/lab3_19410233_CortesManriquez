@@ -20,16 +20,18 @@ public class Main {
     
     public Main()
     {
-        this.editor = new Editor(); //Se declara las clases para hacer funcionar el programa
+        this.editor = new Editor(); 
     }
 
     public void iniEditor() {
-        System.out.println("Hola");
         editor.register("user1", "pass1");
         editor.register("user2", "pass2");
         editor.register("user3", "pass3");
         editor.register("user4", "pass4");
         editor.register("user5", "pass5");
+        editor.iniDocumentos();
+        
+        
     }
     
 }

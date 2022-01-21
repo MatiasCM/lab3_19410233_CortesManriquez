@@ -4,7 +4,7 @@
  */
 package lab3_19410233_CortesManriquez;
 
-import java.util.List;
+import java.util.ArrayList;
 
 /**
  *
@@ -12,10 +12,10 @@ import java.util.List;
  */
 public class Permisos {
     protected String userNamePermitido;
-    protected List<String> listPermisos;
+    protected ArrayList<String> listPermisos;
     
     //---Constructor---//
-    public Permisos(String userNamePermitido, List<String> listPermisos) {
+    public Permisos(String userNamePermitido, ArrayList<String> listPermisos) {
         this.userNamePermitido = userNamePermitido;
         this.listPermisos = listPermisos;
     }
@@ -24,7 +24,7 @@ public class Permisos {
     public String getUserNamePermitido() {
         return userNamePermitido;
     }
-    public List<String> getListPermisos() {
+    public ArrayList<String> getListPermisos() {
         return listPermisos;
     }
     
@@ -32,8 +32,14 @@ public class Permisos {
     public void setUserNamePermitido(String userNamePermitido) {
         this.userNamePermitido = userNamePermitido;
     }
-    public void setListPermisos(List<String> listPermisos) {
+    public void setListPermisos(ArrayList<String> listPermisos) {
         this.listPermisos = listPermisos;
     }
-      
+
+    @Override
+    public String toString() {
+        return "Permisos{" + "userNamePermitido=" + userNamePermitido + ", listPermisos=" + listPermisos + '}';
+    }
+     
+    
 }

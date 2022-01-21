@@ -4,8 +4,8 @@
  */
 package lab3_19410233_CortesManriquez;
 
-import java.time.LocalDate;
-import java.util.List;
+import java.util.ArrayList;
+import java.util.Date;
 
 /**
  *
@@ -14,14 +14,14 @@ import java.util.List;
 public class Documento {
     public int idDoc;
     public String autor;
-    public LocalDate fechaCreacion;
+    public Date fechaCreacion;
     protected String titulo;
     protected String  contenido;
-    protected List<Version> versiones;
-    protected List<Permisos> listPermisos;
+    protected ArrayList<Version> versiones;
+    protected ArrayList<Permisos> listPermisos;
     
     //---Constructor---//
-    public Documento(int idDoc, String autor, LocalDate fechaCreacion, String titulo, String contenido, List<Version> versiones, List<Permisos> listPermisos) {
+    public Documento(int idDoc, String autor, Date fechaCreacion, String titulo, String contenido, ArrayList<Version> versiones, ArrayList<Permisos> listPermisos) {
         this.idDoc = idDoc;
         this.autor = autor;
         this.fechaCreacion = fechaCreacion;
@@ -31,6 +31,18 @@ public class Documento {
         this.listPermisos = listPermisos;
     }
     
+    public Documento (){
+        this.idDoc = 0;
+        this.autor = "";
+        this.fechaCreacion = null;
+        this.titulo = "";
+        this.contenido = "";
+        ArrayList<Version> ver = new ArrayList<Version>();
+        this.versiones = ver;
+        ArrayList<Permisos> p = new ArrayList<Permisos>();
+        this.listPermisos = p;
+    }
+    
     //---Selectores---//
     public int getIdDoc() {
         return idDoc;
@@ -38,7 +50,7 @@ public class Documento {
     public String getAutor() {
         return autor;
     }
-    public LocalDate getFechaCreacion() {
+    public Date getFechaCreacion() {
         return fechaCreacion;
     }
     public String getTitulo() {
@@ -47,10 +59,10 @@ public class Documento {
     public String getContenido() {
         return contenido;
     }
-    public List<Version> getVersiones() {
+    public ArrayList<Version> getVersiones() {
         return versiones;
     }
-    public List<Permisos> getListPermisos() {
+    public ArrayList<Permisos> getListPermisos() {
         return listPermisos;
     }
     
@@ -61,7 +73,7 @@ public class Documento {
     public void setAutor(String autor) {
         this.autor = autor;
     }
-    public void setFechaCreacion(LocalDate fechaCreacion) {
+    public void setFechaCreacion(Date fechaCreacion) {
         this.fechaCreacion = fechaCreacion;
     }
     public void setTitulo(String titulo) {
@@ -70,11 +82,21 @@ public class Documento {
     public void setContenido(String contenido) {
         this.contenido = contenido;
     }
-    public void setVersiones(List<Version> versiones) {
+    public void setVersiones(ArrayList<Version> versiones) {
         this.versiones = versiones;
     }
-    public void setListPermisos(List<Permisos> listPermisos) {
+    public void setListPermisos(ArrayList<Permisos> listPermisos) {
         this.listPermisos = listPermisos;
+    }
+
+    @Override
+    public String toString() {
+        return "Documento{" + "idDoc=" + idDoc + ", autor=" + autor + ", fechaCreacion=" + fechaCreacion + ", titulo=" + titulo + ", contenido=" + contenido + ", versiones=" + versiones + ", listPermisos=" + listPermisos + '}';
+    }
+    
+    public void addVersion(Version v){
+        Version ver = v;
+        this.versiones.add(ver);
     }
        
 }

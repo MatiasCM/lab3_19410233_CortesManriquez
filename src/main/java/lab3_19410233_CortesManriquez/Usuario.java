@@ -38,6 +38,11 @@ public class Usuario {
     public void setPassword(String password) {
         this.password = password;
     }
+
+    @Override
+    public String toString() {
+        return "Usuario{" + "userName=" + userName + ", password=" + password + '}';
+    }
     
     public void createUser(String nombre,String pass){
       this.userName = nombre;
