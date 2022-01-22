@@ -98,5 +98,31 @@ public class Documento {
         Version ver = v;
         this.versiones.add(ver);
     }
+    
+    public void addPermiso(Permisos p){
+        Permisos per = p;
+        this.listPermisos.add(per);
+    }
+    
+     public int lenLP(){
+        return this.listPermisos.size();
+    }
+    
+    public int enListPermisos(String nombreU){
+        for(int i = 0; i<lenLP();i++){
+            if(listPermisos.get(i).getUserNamePermitido().equals(nombreU)){
+                return 1;
+            }
+        }
+        return 0;
+    }
+    
+    public void removePermiso(ArrayList<Permisos> p, String usuario){
+        for(int i = 0; i<lenLP();i++){
+            if(p.get(i).getUserNamePermitido().equals(usuario)){
+                p.remove(i);
+            }
+        }
+    }
        
 }

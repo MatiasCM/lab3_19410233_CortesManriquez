@@ -46,6 +46,21 @@ public class ListDocumentos {
         Documento doc = d;
         this.documentos.add(doc);
     }
+    
+    public int lenLD(){
+       return this.documentos.size();
+    }
+     
+    public Documento existeDocId(int idDoc){
+       for(int i = 0 ; i<lenLD();i++){
+           if(documentos.get(i).getIdDoc() == idDoc){
+               Documento d = documentos.get(i);
+               return d;
+           }
+       }
+        return null;
+      
+    }
 
     @Override
     public String toString() {

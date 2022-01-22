@@ -92,6 +92,9 @@ public class Main {
        
         String titulo;
         String contenido;
+        String idDoc;
+        String user;
+        String permiso;
           
         Scanner accion = new Scanner(System.in);
         System.out.println("Escoja su opcion: ");
@@ -109,7 +112,6 @@ public class Main {
         opcion = accion.nextLine();
         switch(opcion){
           case "1":
-            System.out.println("Crear nuevo documento"); 
             System.out.println("Ingrese el titulo del documento: ");
             titulo = accion.nextLine();
             System.out.println("Ingrese el contenido del documento: ");
@@ -117,8 +119,22 @@ public class Main {
             editor.create(titulo, contenido);
             break;
           case "2":
-            System.out.println("Compartir documento");
-            break;
+            System.out.println("Ingrese el id del documento: ");
+            idDoc = accion.nextLine();
+            System.out.println("Ingrese el usuario al que quiere compartir: ");
+            user = accion.nextLine();
+            System.out.println("Ingrese el tipo de permiso (lectura, escritura, comentar): ");
+            permiso = accion.nextLine();
+            if("lectura".equals(permiso) || "escritura".equals(permiso) || "comentar".equals(permiso)){
+                editor.darPermiso(user, permiso, idDoc);
+                break;
+            }
+            else{
+                System.out.println("-------------------------------------------------\n"
+                    +          "|                Permiso erroneo                |\n"
+                    +          "-------------------------------------------------");
+                break;
+            }
           case "3":
             System.out.println("Agregar contenido a un documento");
             break;

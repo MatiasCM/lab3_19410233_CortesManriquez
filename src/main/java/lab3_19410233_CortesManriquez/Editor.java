@@ -112,6 +112,23 @@ public class Editor {
         System.out.println("\n Se ha creado el documento: " + newD.toString() + "\n");
     }
     
+    public void darPermiso(String usuario, String permiso, String idDoc){
+        int numero = Integer.parseInt(idDoc);
+        Documento d = listaDocumentos.existeDocId(numero);
+        if(d.enListPermisos(usuario) == 1){
+            ArrayList<Permisos> permisos = d.getListPermisos();
+            d.removePermiso(permisos, usuario);
+            Permisos p = new Permisos(usuario, permiso);
+            d.addPermiso(p);
+            System.out.println("\nSe ha compartido el documento con el permiso de " + permiso + " " + d.toString()+ "\n");
+        }
+        else{
+            Permisos p = new Permisos(usuario, permiso);
+            d.addPermiso(p);
+            System.out.println("\nSe ha compartido el documento con el permiso de " + permiso + " " + d.toString()+ "\n");
+        }
+    }
+    
     public void iniDocumentos(){
         Date f1 = new Date();
         Documento d1 = new Documento();
