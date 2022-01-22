@@ -107,6 +107,10 @@ public class Documento {
      public int lenLP(){
         return this.listPermisos.size();
     }
+     
+    public int lenLV(){
+       return this.versiones.size();
+    }
     
     public int enListPermisos(String nombreU){
         for(int i = 0; i<lenLP();i++){
@@ -123,6 +127,22 @@ public class Documento {
                 p.remove(i);
             }
         }
+    }
+    
+    public int existePermisoEscritura(ArrayList<Permisos> p, String usuario){
+        for(int i = 0; i<lenLP();i++){
+            if(listPermisos.get(i).getUserNamePermitido().equals(usuario) && listPermisos.get(i).getPermiso().equals("escritura")){
+                return 1;
+            }
+        }
+        return 0;
+    }
+    
+    public ArrayList<Version> reverseVersionList(ArrayList<Version> versiones) {
+        for(int i = 0, j = versiones.size() - 1; i < j; i++) {
+            versiones.add(i, versiones.remove(j));
+        }
+        return versiones;
     }
        
 }

@@ -129,6 +129,19 @@ public class Editor {
         }
     }
     
+    public void addContenido(Documento d, String contenidoNuevo){
+        String textoViejo = d.getContenido();
+        d.setContenido(textoViejo.concat(contenidoNuevo));
+        ArrayList<Version> versiones = d.getVersiones();
+        ArrayList<Version> ver = d.reverseVersionList(versiones);
+        Version version = ver.get(0);
+        int id = version.getIdVersion();
+        Version v = new Version(textoViejo.concat(contenidoNuevo), id+1);
+        d.reverseVersionList(ver);
+        d.addVersion(v);
+        System.out.println(d.toString());
+    }
+    
     public void iniDocumentos(){
         Date f1 = new Date();
         Documento d1 = new Documento();

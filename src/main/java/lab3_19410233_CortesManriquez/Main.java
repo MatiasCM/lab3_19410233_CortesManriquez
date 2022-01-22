@@ -4,6 +4,7 @@
  */
 package lab3_19410233_CortesManriquez;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 /**
@@ -136,8 +137,36 @@ public class Main {
                 break;
             }
           case "3":
-            System.out.println("Agregar contenido a un documento");
-            break;
+            System.out.println("Ingrese el id del documento: ");
+            idDoc = accion.nextLine();
+            System.out.println("Ingrese el contenido del documento: ");
+            contenido = accion.nextLine();
+            ListDocumentos lista = editor.getListaDocumentos();
+            int numero = Integer.parseInt(idDoc);
+            Documento d = lista.existeDocId(numero);
+            String autor = d.getAutor();
+            Usuario usuario = editor.getUsuarioLog();
+            String userName = usuario.getUserName();
+            ArrayList<Permisos> permisos = d.getListPermisos();
+            if(autor.equals(userName)){
+                editor.addContenido(d, contenido);
+                break;
+            }
+            else if(d.enListPermisos(userName)==1){
+                if(d.existePermisoEscritura(permisos, userName)==1){
+                    editor.addContenido(d, contenido);
+                    break;
+                }
+                else{
+                    System.out.println("-------------------------------------------------\n"
+                    +          "|                Usuario no posee el permiso                |\n"
+                    +          "-------------------------------------------------");
+                    break;
+                }
+            }
+           
+            //editor.addContenido(d, contenido);
+            //break;
           case "4":
             System.out.println("Restaurar versión de un documento");
             break;
