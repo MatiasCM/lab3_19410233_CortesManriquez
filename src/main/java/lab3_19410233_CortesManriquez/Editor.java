@@ -60,6 +60,33 @@ public class Editor {
         }
     }
     
+    public int login(String username,String pass){
+        if(listUsuarios.inUserList(username)==0){
+            System.out.println("-------------------------------------------------\n"
+                    +          "|             Usuario no registrado             |\n"
+                    +          "-------------------------------------------------");
+            return 0;
+        }
+        else if(listUsuarios.inUserList(username)==1 ){
+            int validate = listUsuarios.matchSearchAccessUser(username, pass);
+            if(!(validate == -1)){
+                //Usuario newLogin = listUsuarios.UL.get(validate);
+                usuarioLog.setUserName(username);
+                usuarioLog.setPassword(pass);
+                System.out.println("|Logeado como: "+username+" |");
+                return 1;
+            }
+            return 0;
+        }
+        else{
+            System.out.println("-------------------------------------------------\n"
+                    +          "|                Usuario Logeado                |\n"
+                    +          "-------------------------------------------------");
+            return 0;
+        }
+       
+    }
+    
     public void iniDocumentos(){
         Date f1 = new Date();
         Documento d1 = new Documento();

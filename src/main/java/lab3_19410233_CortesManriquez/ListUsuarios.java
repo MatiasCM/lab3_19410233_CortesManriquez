@@ -41,4 +41,28 @@ public class ListUsuarios {
         Usuario us = u;
         this.UL.add(us);
     }
+     
+     public int matchSearchAccessUser(String nombreU, String pass){
+        if(UL.isEmpty()){
+            return -1;
+        }
+        
+        for(int i = 0; i<lenUL();i++){
+            if(UL.get(i).getUserName().equals(nombreU)){
+                if(UL.get(i).getPassword().equals(pass)){
+                    return i;
+                }
+                else{
+                    System.out.println("-------------------------------------------------\n"
+                    +          "|  Contrasegna Incorrecta, intentelo nuevamente  |\n"
+                    +          "-------------------------------------------------");
+                    return -1;
+                }
+            }
+        }
+        System.out.println("-------------------------------------------------\n"
+                    +          "|     Usuario y Contrasegna Incorrectos     |\n"
+                    +          "-------------------------------------------------");
+        return -1;
+    }
 }
