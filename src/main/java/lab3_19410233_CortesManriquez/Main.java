@@ -90,7 +90,9 @@ public class Main {
       while(exit==0)
       {
        
-        
+        String titulo;
+        String contenido;
+          
         Scanner accion = new Scanner(System.in);
         System.out.println("Escoja su opcion: ");
         System.out.println("1. Crear nuevo documento");
@@ -105,10 +107,14 @@ public class Main {
         System.out.println("-------------------------------");
         System.out.println("INTRODUZCA SU OPCION: ");
         opcion = accion.nextLine();
-        switch(opcion)
-        {
+        switch(opcion){
           case "1":
-            System.out.println("Crear nuevo documento");   
+            System.out.println("Crear nuevo documento"); 
+            System.out.println("Ingrese el titulo del documento: ");
+            titulo = accion.nextLine();
+            System.out.println("Ingrese el contenido del documento: ");
+            contenido = accion.nextLine();
+            editor.create(titulo, contenido);
             break;
           case "2":
             System.out.println("Compartir documento");

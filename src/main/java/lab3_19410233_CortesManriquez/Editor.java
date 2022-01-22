@@ -4,6 +4,7 @@
  */
 package lab3_19410233_CortesManriquez;
 
+import java.util.ArrayList;
 import java.util.Date;
 
 /**
@@ -91,6 +92,24 @@ public class Editor {
         usuarioLog.setUserName("");
         usuarioLog.setPassword("");
         System.out.println("|DESLOGEADO DE LA SESION|");
+    }
+     
+    public void create(String titulo, String contenido){
+        Documento newD = new Documento();
+        Date d = new Date();
+        int id = listaDocumentos.getCantidadDocumentos();
+        String autor = usuarioLog.getUserName();
+        id = id + 1;
+        Version ver = new Version(contenido, 1);
+        
+        newD.setIdDoc(id);
+        newD.setAutor(autor);
+        newD.setFechaCreacion(d);
+        newD.setTitulo(titulo);
+        newD.setContenido(contenido);
+        newD.addVersion(ver);
+        listaDocumentos.addDocumento(newD);  
+        System.out.println("\n Se ha creado el documento: " + newD.toString() + "\n");
     }
     
     public void iniDocumentos(){
