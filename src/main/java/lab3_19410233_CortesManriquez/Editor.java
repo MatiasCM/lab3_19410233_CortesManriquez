@@ -87,6 +87,12 @@ public class Editor {
        
     }
     
+     public void logout(){
+        usuarioLog.setUserName("");
+        usuarioLog.setPassword("");
+        System.out.println("|DESLOGEADO DE LA SESION|");
+    }
+    
     public void iniDocumentos(){
         Date f1 = new Date();
         Documento d1 = new Documento();

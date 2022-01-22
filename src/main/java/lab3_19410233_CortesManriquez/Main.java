@@ -128,8 +128,10 @@ public class Main {
           case "7":
             System.out.println("Visualizar documentos");
             break;
-          case "8":
-            System.out.println("Cerrar sesión");
+          case "8": //Deslogearse
+            editor.logout();
+            exit = 1;
+            this.start();
             break;
           case "9":
             System.out.println("-| HA SALIDO DEL PROGRAMA |-");
