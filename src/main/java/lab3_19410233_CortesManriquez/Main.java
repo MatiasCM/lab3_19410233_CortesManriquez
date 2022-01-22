@@ -96,6 +96,7 @@ public class Main {
         String idDoc;
         String user;
         String permiso;
+        String idVersion;
           
         Scanner accion = new Scanner(System.in);
         System.out.println("Escoja su opcion: ");
@@ -164,12 +165,28 @@ public class Main {
                     break;
                 }
             }
-           
-            //editor.addContenido(d, contenido);
-            //break;
           case "4":
-            System.out.println("Restaurar versión de un documento");
-            break;
+            System.out.println("Ingrese el id del documento: ");
+            idDoc = accion.nextLine();
+            System.out.println("Ingrese el id de la version: ");
+            idVersion = accion.nextLine();
+            ListDocumentos lista2 = editor.getListaDocumentos();
+            int numero2 = Integer.parseInt(idDoc);
+            Documento d2 = lista2.existeDocId(numero2);
+            String autor2 = d2.getAutor();
+            Usuario usuario2 = editor.getUsuarioLog();
+            String userName2 = usuario2.getUserName();
+            int numeroVersion = Integer.parseInt(idVersion);
+            if(autor2.equals(userName2)){
+                editor.rollback(d2, numeroVersion);
+                break;
+            }
+            else{
+                System.out.println("-------------------------------------------------\n"
+                +          "|                Usuario no es el autor               |\n"
+                +          "-------------------------------------------------");
+                break;
+            }
           case "5":
             System.out.println("Revocar acceso a un documento");
             break;

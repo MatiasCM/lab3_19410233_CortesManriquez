@@ -144,5 +144,24 @@ public class Documento {
         }
         return versiones;
     }
-       
+    
+    public String returnVersion(int id){
+        for(int i = 0; i<lenLV();i++){
+            if(versiones.get(i).getIdVersion()==id){
+                String v = versiones.get(i).getContenidoVersion();
+                return v;
+            }
+        }
+        return null;
+    }
+     
+    public int enListVersiones(int id){
+        for(int i = 0; i<lenLV();i++){
+            if(versiones.get(i).getIdVersion()==id){
+                return 1;
+            }
+        }
+        return 0;
+    }
+    
 }

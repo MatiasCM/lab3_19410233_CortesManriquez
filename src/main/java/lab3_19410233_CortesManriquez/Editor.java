@@ -142,6 +142,23 @@ public class Editor {
         System.out.println(d.toString());
     }
     
+    public int rollback(Documento d, int idVersion){
+        //ArrayList<Version> listaVersiones = d.getVersiones();
+        if(d.enListVersiones(idVersion)==1){
+            String contenidoVersion =d.returnVersion(idVersion);
+            d.setContenido(contenidoVersion);
+            String n = String.valueOf(idVersion);
+            System.out.println("\nSe ha restaurado a la version "+n+ " "+d.toString()+"\n");
+            return 1;
+        }
+        else{
+            System.out.println("-------------------------------------------------\n"
+                    +          "|                Version no existe               |\n"
+                    +          "-------------------------------------------------");
+            return 0;
+        }
+    }
+    
     public void iniDocumentos(){
         Date f1 = new Date();
         Documento d1 = new Documento();
