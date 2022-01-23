@@ -188,8 +188,24 @@ public class Main {
                 break;
             }
           case "5":
-            System.out.println("Revocar acceso a un documento");
-            break;
+            System.out.println("Ingresar id del documento: ");
+            idDoc= accion.nextLine();
+            ListDocumentos lista3 = editor.getListaDocumentos();
+            int numero3 = Integer.parseInt(idDoc);
+            Documento d3 = lista3.existeDocId(numero3);
+            String autor3 = d3.getAutor();
+            Usuario usuario3 = editor.getUsuarioLog();
+            String userName3 = usuario3.getUserName();
+            if(autor3.equals(userName3)){
+                editor.revokeAllAccess(numero3);
+                break;
+            }
+            else{
+                System.out.println("-------------------------------------------------\n"
+                +          "|                Usuario no es el autor           |\n"
+                +          "-------------------------------------------------");
+                break;
+            }
           case "6":
             System.out.println("Buscar en los documentos");
             break;

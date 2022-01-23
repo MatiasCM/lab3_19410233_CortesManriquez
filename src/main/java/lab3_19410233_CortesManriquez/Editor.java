@@ -159,6 +159,14 @@ public class Editor {
         }
     }
     
+    public void revokeAllAccess(int idDoc){
+        ListDocumentos lista = getListaDocumentos();
+        Documento d = lista.existeDocId(idDoc);
+        ArrayList<Permisos> p = new ArrayList<Permisos>();
+        d.setListPermisos(p);
+        System.out.println("\nSe han revocado los permisos del documento " + d.toString()+"\n");
+    }
+    
     public void iniDocumentos(){
         Date f1 = new Date();
         Documento d1 = new Documento();
