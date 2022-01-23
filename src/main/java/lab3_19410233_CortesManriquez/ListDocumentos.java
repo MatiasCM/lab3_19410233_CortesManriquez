@@ -61,6 +61,25 @@ public class ListDocumentos {
         return null;
       
     }
+    
+     public int inDocList(String nombreU){
+        for(int i = 0; i<lenLD();i++){
+            if(documentos.get(i).getAutor().equals(nombreU)){
+                return 1;
+            }
+        }
+        return 0;
+    }
+    
+     public Documento existeDocUser(String userName){
+       for(int i = 0 ; i<lenLD();i++){
+           if(documentos.get(i).getAutor().equals(userName)){
+               Documento d = documentos.get(i);
+               return d;
+           }
+       }
+        return null;
+    }
 
     @Override
     public String toString() {

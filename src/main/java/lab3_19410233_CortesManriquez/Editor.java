@@ -167,6 +167,61 @@ public class Editor {
         System.out.println("\nSe han revocado los permisos del documento " + d.toString()+"\n");
     }
     
+    public String editorToString(){
+        ListDocumentos lista = getListaDocumentos();
+        ArrayList<Documento> documentos = lista.getDocumentos();
+        String s = "---------------------\nDocumentos del editor\n---------------------\n";
+        //String concat = "";
+        for(int i = 0 ; i<lista.lenLD();i++){
+            Documento d = documentos.get(i);
+            int id = d.getIdDoc();
+            String numero = String.valueOf(id);
+            String autor = d.getAutor();
+            String titulo = d.getTitulo();
+            String contenido = d.getContenido();
+            ArrayList<Version> versiones = d.getVersiones();
+            ArrayList<Version> ver = d.reverseVersionList(versiones);
+            Version version = ver.get(0);
+            int cantidad = version.getIdVersion();
+            String doc = "Documento " + numero + "\n  Autor: " + autor + "\n  Titulo: " + titulo + "\n  Contenido: " + contenido + "\n  N° Versiones: " + cantidad +"\n";
+            s = s.concat(doc);
+       }
+       return s;
+    }
+    
+    public String editorToStringLogin(){
+        ListDocumentos lista = getListaDocumentos();
+        ArrayList<Documento> documentos = lista.getDocumentos();
+        Usuario user = getUsuarioLog();
+        String userName = user.getUserName();
+        String s = "\n------------------- \nDocumentos de " + userName + "\n-------------------\n";
+        ArrayList<Documento> documentosUser = new ArrayList<Documento>();
+        for(int i = 0 ; i<lista.lenLD();i++){
+            if(documentos.get(i).getAutor().equals(userName)){
+                documentosUser.add(documentos.get(i));
+            }
+        }
+        for(int j = 0 ; j<documentosUser.size();j++){
+            Documento d = documentosUser.get(j);
+            int id = d.getIdDoc();
+            String numero = String.valueOf(id);
+            //String autor = d.getAutor();
+            String titulo = d.getTitulo();
+            String contenido = d.getContenido();
+            ArrayList<Version> versiones = d.getVersiones();
+            ArrayList<Version> ver = d.reverseVersionList(versiones);
+            Version version = ver.get(0);
+            int cantidad = version.getIdVersion();
+            String doc = "Documento " + numero +  "\n  Titulo: " + titulo + "\n  Contenido: " + contenido + "\n  N° Versiones: " + cantidad +  "\n";
+            s = s.concat(doc);
+        }
+        return s;
+    }
+    
+    public void printEditor(String s){
+        System.out.println(s);
+    }
+    
     public void iniDocumentos(){
         Date f1 = new Date();
         Documento d1 = new Documento();

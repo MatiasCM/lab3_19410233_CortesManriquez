@@ -48,7 +48,8 @@ public class Main {
             System.out.println("Escoja su opcion: ");
             System.out.println("1. Registrarse");
             System.out.println("2. Logearse");
-            System.out.println("3. Salir del Programa");
+            System.out.println("3. Visualizar documentos");
+            System.out.println("4. Salir del Programa");
             System.out.println("-------------------------------");
             System.out.println("INTRODUZCA SU OPCION: ");
             opcion = accion.nextLine();
@@ -70,7 +71,11 @@ public class Main {
                        exit = 1;
                     }
                     break;
-                case "3"://SALIR DEL PROGRAMA
+                case "3": //Visualizar documentos
+                    String d = editor.editorToString();
+                    editor.printEditor(d);
+                    break;
+                case "4"://SALIR DEL PROGRAMA
                     System.out.println("-| HA SALIDO DEL PROGRAMA |-");
                     exit = 1;
                     break;
@@ -210,7 +215,8 @@ public class Main {
             System.out.println("Buscar en los documentos");
             break;
           case "7":
-            System.out.println("Visualizar documentos");
+            String s = editor.editorToStringLogin();
+            editor.printEditor(s);
             break;
           case "8": //Deslogearse
             editor.logout();
