@@ -9,6 +9,10 @@ repositories {
     mavenCentral()
 }
 
+run{
+	standardInput = System.in
+}
+
 dependencies {
     testImplementation     'junit:junit:4.13'
 }
