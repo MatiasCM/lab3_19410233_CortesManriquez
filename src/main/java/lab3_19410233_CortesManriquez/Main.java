@@ -102,6 +102,7 @@ public class Main {
         String user;
         String permiso;
         String idVersion;
+        String caracteres;
           
         Scanner accion = new Scanner(System.in);
         System.out.println("Escoja su opcion: ");
@@ -110,8 +111,8 @@ public class Main {
         System.out.println("3. Agregar contenido a un documento");
         System.out.println("4. Restaurar versión de un documento");
         System.out.println("5. Revocar acceso a un documento");
-        System.out.println("6. Buscar en los documentos");
-        System.out.println("7. Visualizar documentos");
+        System.out.println("6. Visualizar documentos");
+        System.out.println("7. Eliminar caracteres");
         System.out.println("8. Cerrar sesión");
         System.out.println("9. Cerrar el programa");
         System.out.println("-------------------------------");
@@ -212,12 +213,38 @@ public class Main {
                 break;
             }
           case "6":
-            System.out.println("Buscar en los documentos");
-            break;
-          case "7":
             String s = editor.editorToStringLogin();
             editor.printEditor(s);
             break;
+          case "7":
+            System.out.println("Ingrese el id del documento: ");
+            idDoc = accion.nextLine();
+            System.out.println("Ingrese la cantidad de caracteres a eliminar: ");
+            caracteres = accion.nextLine();
+            int id = Integer.parseInt(idDoc);
+            int cantidadCaracteres= Integer.parseInt(caracteres);
+            ListDocumentos lista4 = editor.getListaDocumentos();
+            Documento d4 = lista4.existeDocId(id);
+            String autor4 = d4.getAutor();
+            Usuario usuario4 = editor.getUsuarioLog();
+            String userName4 = usuario4.getUserName();
+            ArrayList<Permisos> permisos2 = d4.getListPermisos();
+            if(autor4.equals(userName4)){
+                editor.delete(id,cantidadCaracteres);
+                break;
+            }
+            else if(d4.enListPermisos(userName4)==1){
+                if(d4.existePermisoEscritura(permisos2, userName4)==1){
+                    editor.delete(id,cantidadCaracteres);
+                    break;
+                }
+            }
+            else{
+                System.out.println("-------------------------------------------------\n"
+                +          "|                Usuario no posee el permiso                |\n"
+                +          "-------------------------------------------------");
+                break;
+            }
           case "8": //Deslogearse
             editor.logout();
             exit = 1;

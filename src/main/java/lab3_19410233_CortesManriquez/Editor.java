@@ -221,6 +221,31 @@ public class Editor {
     public void printEditor(String s){
         System.out.println(s);
     }
+      
+    public void delete(int idDoc, int caracteres){
+        ListDocumentos lista = getListaDocumentos();
+        Documento d = lista.existeDocId(idDoc);
+        String contenido = d.getContenido();
+        int largo = contenido.length();
+        String content = null;
+        if(largo<caracteres){
+            content="";
+        }
+        else{
+            for(int i = largo;i>=0;i--){
+                content = contenido.substring(0, largo-caracteres);
+            }
+        }
+        d.setContenido(content);
+        ArrayList<Version> versiones = d.getVersiones();
+        ArrayList<Version> ver = d.reverseVersionList(versiones);
+        Version version = ver.get(0);
+        int id = version.getIdVersion();
+        Version v = new Version(content, id+1);
+        d.reverseVersionList(ver);
+        d.addVersion(v);
+        System.out.println("\nSe han eliminado los caracteres " + d.toString() + "\n");
+    }
     
     public void iniDocumentos(){
         Date f1 = new Date();
