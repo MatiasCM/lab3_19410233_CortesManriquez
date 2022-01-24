@@ -17,6 +17,7 @@ public class Main {
     public static void main(String[] args) {
         Main programa = new Main();
         programa.iniEditor();
+        programa.cabezera();
         programa.start();
     }
     
@@ -37,6 +38,15 @@ public class Main {
         editor.iniDocumentos();
         
         
+    }
+    
+     public void cabezera()
+    {
+        System.out.println("-------------------------------");
+        System.out.println("|                             |");
+        System.out.println("|    BIENVENIDO AL EDITOR     |");
+        System.out.println("|                             |");
+        System.out.println("-------------------------------");
     }
     
     /**
