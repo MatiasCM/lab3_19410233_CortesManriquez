@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package lab3_19410233_CortesManriquez;
 
 import java.util.ArrayList;
@@ -9,7 +5,7 @@ import java.util.Date;
 
 /**
  * Una clase para representar la plataforma de documentos
- * @author matias
+ * @author Matias Cortes Manriquez
  */
 public class Editor {
     protected Usuario usuarioLog;
@@ -17,6 +13,10 @@ public class Editor {
     protected ListDocumentos listaDocumentos;
     
     //---Constructor---//
+
+    /**
+     * Constructor del editor
+     */
     public Editor() {
         this.usuarioLog = new Usuario();
         this.listUsuarios = new ListUsuarios();
@@ -24,28 +24,63 @@ public class Editor {
     }
     
     //---Selectores---//
+
+    /**
+     * Retorna el usuario logeado del editor
+     * @return Usuario logeado
+     */
     public Usuario getUsuarioLog() {
         return usuarioLog;
     }
+
+    /**
+     * Retorna la lista de usuarios 
+     * @return ListUsuarios  lista con usuarios 
+     */
     public ListUsuarios getListUsuarios() {
         return listUsuarios;
     }
+
+    /**
+     * Retorna la lista de documentos
+     * @return ListDocumentos lista con documentos y la cantidad de ellos
+     */
     public ListDocumentos getListaDocumentos() {
         return listaDocumentos;
     }
        
     //---Modificadores---//
+
+    /**
+     * Cambia el usuario logeado por el usuario entregado
+     * @param usuarioLog Usuario 
+     */
     public void setUsuarioLog(Usuario usuarioLog) {
         this.usuarioLog = usuarioLog;
     }
+
+    /**
+     * Cambia la lista de usuarios por la lista entregada
+     * @param listUsuarios ListUsuarios
+     */
     public void setListUsuarios(ListUsuarios listUsuarios) {
         this.listUsuarios = listUsuarios;
     }
+
+    /**
+     * Cambia la lista de documentos por la lista entregada
+     * @param listaDocumentos ListDocumentos
+     */
     public void setListaDocumentos(ListDocumentos listaDocumentos) {
         this.listaDocumentos = listaDocumentos;
     }
    
-    
+    /**
+     * Metodo que realiza la funcionalidad de registrar un usuario en el editor
+     * Si el usuario ya existe no se registra
+     * @param userName nombre de usuario
+     * @param password contrasegna del usuario
+     */
     public void register(String userName,String password){
         if(listUsuarios.inUserList(userName)==0)
         {
@@ -61,6 +96,13 @@ public class Editor {
         }
     }
     
+    /**
+     * Metodo para realizar la funcionalidad de logear a un usuario,
+     * considerando que tanto el usuario exista y la contrasegna sea correcta
+     * @param username nombre de usuario
+     * @param pass contrasegan del usuario
+     * @return 1 para un login exitoso, 0 para un login no exitoso
+     */
     public int login(String username,String pass){
         if(listUsuarios.inUserList(username)==0){
             System.out.println("-------------------------------------------------\n"
@@ -88,12 +130,21 @@ public class Editor {
        
     }
     
-     public void logout(){
+    /**
+     * Realiza la funcionalidad de deslogear a un usuario
+     */
+    public void logout(){
         usuarioLog.setUserName("");
         usuarioLog.setPassword("");
         System.out.println("|DESLOGEADO DE LA SESION|");
     }
      
+    /**
+     * Realizxa la creacion de un nuevo documento a partir 
+     * de un titulo y un contenido para el documento
+     * @param titulo nombre del documento
+     * @param contenido texto del documento
+     */
     public void create(String titulo, String contenido){
         Documento newD = new Documento();
         Date d = new Date();
@@ -112,6 +163,13 @@ public class Editor {
         System.out.println("\n Se ha creado el documento: " + newD.toString() + "\n");
     }
     
+    /**
+     * Realiza la funcionalidad de compartir un documento con otros usuarios
+     * entregandole un permiso especifico
+     * @param usuario nombre de usuario a compartir
+     * @param permiso tipo de permiso
+     * @param idDoc id del documento a compartir
+     */
     public void darPermiso(String usuario, String permiso, String idDoc){
         int numero = Integer.parseInt(idDoc);
         Documento d = listaDocumentos.existeDocId(numero);
@@ -129,6 +187,12 @@ public class Editor {
         }
     }
     
+    /**
+     * Realiza la funcionalidad de agregar contenido a un documento, solo si
+     * eres el autor del documento o si posees el permiso de escritura
+     * @param d documento al que agregar contenido
+     * @param contenidoNuevo contenido a agregar
+     */
     public void addContenido(Documento d, String contenidoNuevo){
         String textoViejo = d.getContenido();
         d.setContenido(textoViejo.concat(contenidoNuevo));
@@ -142,6 +206,12 @@ public class Editor {
         System.out.println(d.toString());
     }
     
+    /**
+     * Realiza la funcionalidad de restaurar a una version especifica de un documento
+     * @param d documento 
+     * @param idVersion id de la version a restaurar
+     * @return 1 para una restauracion exitosa, 0 para un fallo
+     */
     public int rollback(Documento d, int idVersion){
         //ArrayList<Version> listaVersiones = d.getVersiones();
         if(d.enListVersiones(idVersion)==1){
@@ -159,6 +229,10 @@ public class Editor {
         }
     }
     
+    /**
+     * Realiza la funcionalidad de revocar todos los permisos de un documento
+     * @param idDoc id del documento al que revocar permisos
+     */
     public void revokeAllAccess(int idDoc){
         ListDocumentos lista = getListaDocumentos();
         Documento d = lista.existeDocId(idDoc);
@@ -167,6 +241,11 @@ public class Editor {
         System.out.println("\nSe han revocado los permisos del documento " + d.toString()+"\n");
     }
     
+    /**
+     * Realiza la funcionalidad de crear el string con la informacion
+     * de todos los documentos del editor 
+     * @return String con la informacion de todos los documentos
+     */
     public String editorToString(){
         ListDocumentos lista = getListaDocumentos();
         ArrayList<Documento> documentos = lista.getDocumentos();
@@ -189,6 +268,11 @@ public class Editor {
        return s;
     }
     
+    /**
+     * Realiza la funcionalidad de crear el String con la informacion de 
+     * los documentos de un usuario logeado
+     * @return String con la informacion de los documentos de un usuario
+     */
     public String editorToStringLogin(){
         ListDocumentos lista = getListaDocumentos();
         ArrayList<Documento> documentos = lista.getDocumentos();
@@ -218,10 +302,20 @@ public class Editor {
         return s;
     }
     
+    /**
+     * Imprime un String con la informacion de un editor 
+     * @param s String para imprimir en pantalla
+     */
     public void printEditor(String s){
         System.out.println(s);
     }
       
+    /**
+     * Realiza la funcionalidad de eliminar caracteres de un documento
+     * Elimina los ultimos n caracteres del documento
+     * @param idDoc id del documento al que se le eliminaran caracteres
+     * @param caracteres cantidad de caracteres a eliminar
+     */
     public void delete(int idDoc, int caracteres){
         ListDocumentos lista = getListaDocumentos();
         Documento d = lista.existeDocId(idDoc);
@@ -247,6 +341,9 @@ public class Editor {
         System.out.println("\nSe han eliminado los caracteres " + d.toString() + "\n");
     }
     
+    /**
+     * Crea los documentos iniciales para el editor
+     */
     public void iniDocumentos(){
         Date f1 = new Date();
         Documento d1 = new Documento();
@@ -343,13 +440,11 @@ public class Editor {
     }
 
     /**
-     *
-     * @return
+     * Retorna un String con los atributos de la clase editor
+     * @return String
      */
     @Override
     public String toString() {
         return "Editor{" + "usuarioLog=" + usuarioLog + ", listUsuarios=" + listUsuarios + ", listaDocumentos=" + listaDocumentos + '}';
     }
-    
-    
 }

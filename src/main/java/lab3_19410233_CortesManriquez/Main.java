@@ -1,15 +1,13 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Main.java to edit this template
- */
 package lab3_19410233_CortesManriquez;
 
 import java.util.ArrayList;
 import java.util.Scanner;
 
 /**
- *
- * @author matias
+ * Una clase que representa la totalidad de funcionalidades del programa
+ *dentro del programa se encuentra el menu que despliega las opciones para interactuar
+ * con el editor
+ * @author Matias Cortes Manriquez
  */
 public class Main {
     public Editor editor;
@@ -27,6 +25,9 @@ public class Main {
         this.editor = new Editor(); 
     }
 
+    /**
+     * Inicializa el editor con 5 usuarios y 10 documentos
+     */
     public void iniEditor() {
         editor.register("user1", "pass1");
         editor.register("user2", "pass2");
@@ -38,6 +39,12 @@ public class Main {
         
     }
     
+    /**
+     * Metodo que se muestra en el inicio del programa, donde se presenta 
+     * el registro, el login y la visualzacion de todos los documentos, de esta manera, 
+     * no se puede realizar ciertas acciones sin antes logearse,
+     * no posee entrada de parametros ,ni retornos
+     */
     public void start(){
         int exit = 0;
         String opcion;
@@ -71,7 +78,7 @@ public class Main {
                        exit = 1;
                     }
                     break;
-                case "3": //Visualizar documentos
+                case "3": //VISUALIZACION DE DOCUMENTOS
                     String d = editor.editorToString();
                     editor.printEditor(d);
                     break;
@@ -87,6 +94,10 @@ public class Main {
         }
     }
     
+    /**
+     * Metodo que muestra un menú, enumerando las opciones disponibles en el programa,
+     * cada funcion nos entrega los cambios dentro del editor
+     */
     public void menu(){
     
       int exit = 0;
@@ -119,14 +130,14 @@ public class Main {
         System.out.println("INTRODUZCA SU OPCION: ");
         opcion = accion.nextLine();
         switch(opcion){
-          case "1":
+          case "1": //CREAR NUEVO DOCUMENTO
             System.out.println("Ingrese el titulo del documento: ");
             titulo = accion.nextLine();
             System.out.println("Ingrese el contenido del documento: ");
             contenido = accion.nextLine();
             editor.create(titulo, contenido);
             break;
-          case "2":
+          case "2": //COMPARTIR DOCUMENTO
             System.out.println("Ingrese el id del documento: ");
             idDoc = accion.nextLine();
             System.out.println("Ingrese el usuario al que quiere compartir: ");
@@ -143,7 +154,7 @@ public class Main {
                     +          "-------------------------------------------------");
                 break;
             }
-          case "3":
+          case "3": //AGREGAR CONTENIDO A UN DOCUMENTO
             System.out.println("Ingrese el id del documento: ");
             idDoc = accion.nextLine();
             System.out.println("Ingrese el contenido del documento: ");
@@ -171,7 +182,7 @@ public class Main {
                     break;
                 }
             }
-          case "4":
+          case "4": //RESTAURAR VERSION DE UN DOCUMENTO
             System.out.println("Ingrese el id del documento: ");
             idDoc = accion.nextLine();
             System.out.println("Ingrese el id de la version: ");
@@ -193,7 +204,7 @@ public class Main {
                 +          "-------------------------------------------------");
                 break;
             }
-          case "5":
+          case "5": //REVOCAR ACCESO A UN DOCUMENTO
             System.out.println("Ingresar id del documento: ");
             idDoc= accion.nextLine();
             ListDocumentos lista3 = editor.getListaDocumentos();
@@ -212,11 +223,11 @@ public class Main {
                 +          "-------------------------------------------------");
                 break;
             }
-          case "6":
+          case "6": //VISUALIZAR DOCUMENTOS
             String s = editor.editorToStringLogin();
             editor.printEditor(s);
             break;
-          case "7":
+          case "7": //ELIMINAR CARACTERES
             System.out.println("Ingrese el id del documento: ");
             idDoc = accion.nextLine();
             System.out.println("Ingrese la cantidad de caracteres a eliminar: ");
@@ -245,12 +256,12 @@ public class Main {
                 +          "-------------------------------------------------");
                 break;
             }
-          case "8": //Deslogearse
+          case "8": //DESLOGEARSE
             editor.logout();
             exit = 1;
             this.start();
             break;
-          case "9":
+          case "9": //CERRAR EL PROGRAMA
             System.out.println("-| HA SALIDO DEL PROGRAMA |-");
             exit = 1;
             break;
@@ -261,5 +272,4 @@ public class Main {
       }
 
     }
-    
 }
