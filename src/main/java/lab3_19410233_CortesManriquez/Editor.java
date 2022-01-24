@@ -116,7 +116,9 @@ public class Editor {
                 //Usuario newLogin = listUsuarios.UL.get(validate);
                 usuarioLog.setUserName(username);
                 usuarioLog.setPassword(pass);
-                System.out.println("|Logeado como: "+username+" |");
+                System.out.println("\n------------------------------\n"
+                                +  "|     Logeado como: "+username+"    |"
+                                +  "\n------------------------------\n");
                 return 1;
             }
             return 0;

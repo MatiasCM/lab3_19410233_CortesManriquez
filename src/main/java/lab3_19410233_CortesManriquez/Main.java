@@ -67,6 +67,9 @@ public class Main {
                     System.out.println("Ingrese contrasegna de Usuario: ");
                     p = accion.nextLine();
                     editor.register(u, p);
+                    System.out.println("\n-----------------------------------\n"
+                            +          "|Se ha registrado el usuario " + u + "|" 
+                            +          "\n-----------------------------------\n");
                     break;
                 case "2"://LOGIN
                     System.out.println("Ingrese nombre de Usuario: ");
